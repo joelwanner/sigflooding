@@ -41,7 +41,7 @@ class Server(object):
             total_us = diff_microseconds(datetime.datetime.now(), start_time)
             verify_load = verify_us / total_us
             print()
-            print(f"Running time: {total_us/1000000:.3f}us")
+            print(f"Running time: {total_us/1000000:.3f}s")
             print(f"Signature verification load: {verify_load*100:.2f}%")
     
     def _recv_pkey(self, addr, key):
