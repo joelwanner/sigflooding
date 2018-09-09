@@ -5,9 +5,9 @@ from Crypto.Signature import PKCS1_v1_5
 import base64
 
 class Client(object):
-    def __init__(self, port):
+    def __init__(self, host, port):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.addr = ('localhost', port)
+        self.addr = (host, port)
 
     def request(self, msg):
         sig = self._sign(msg)
@@ -25,8 +25,8 @@ class Client(object):
         raise NotImplementedError
 
 class RSAClient(Client):
-    def __init__(self, port):
-        super().__init__(port)
+    def __init__(self, host, port):
+        super().__init__(host, port)
         with open('pkey.pem') as f:
             self.pkey = RSA.importKey(f.read())
         with open('skey.pem') as f:
